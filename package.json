@@ -1,0 +1,28 @@
+{
+  "name": "tic-tac-toe-api",
+  "version": "1.0.0",
+  "description": "Backend for tic-tac-toe",
+  "main": "index.js",
+  "repository": "https://github.com/mattiaskjellsson/tic-tac-toe-api.git",
+  "author": "Mattias Kjellsson <u.m.kjellsson@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.19"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/cors": "^2.8.10",
+    "@types/express": "^4.17.11",
+    "@types/mongoose": "^5.10.3",
+    "@types/node": "^14.14.31",
+    "nodemon": "^2.0.7",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  }
+}
