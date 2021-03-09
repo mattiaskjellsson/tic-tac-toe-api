@@ -3,7 +3,11 @@ import cors from 'cors'
 import express from 'express'
 import { HighscoreController } from './highscore.controller';
 import { HighscoreService } from './highscore.service';
-import mongoose from "mongoose";
+import { connectDb } from './models/database'
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 class App {
   public readonly app: Application
@@ -11,7 +15,7 @@ class App {
   constructor() {
     this.app = express()
     this.setConfig()
-    this.setMongoConfig()
+    connectDb()
     this.setControllers()
   }
 
@@ -38,20 +42,6 @@ class App {
     this.app.use('/highscore', highscoreController.router)
   }
 
-  private setMongoConfig() {
-    const mongo_name = process.env.NODE_ENV === 'production' ? process.env.MONGO_SERVICE_NAME : 'localhost'
-    const mongo_port = process.env.MONGO_PORT
-    const mongo_db = process.env.MONGO_DB
-    const mongoUrl = `mongodb://${mongo_name}:${mongo_port}/${mongo_db}`
-    
-    mongoose.Promise = global.Promise
-    
-    mongoose.connect(mongoUrl, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-    })
-  }
 }
 
 export default new App().app

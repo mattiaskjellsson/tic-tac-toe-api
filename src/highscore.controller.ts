@@ -12,12 +12,14 @@ export class HighscoreController {
     this.router
     .get('/', async (req: Request, res: Response) => {
       const scorers = await this.service.getHighscorers()
+      console.log(scorers)
       return res.send(scorers)
     })
     .post('/', async (req: Request, res: Response) => {
       console.log('post')
       console.log(req.body)
-      return res.send(req.body)
+      const created = await this.service.createHighscore(req.body)
+      return res.send(created)
     })
   }
 }
