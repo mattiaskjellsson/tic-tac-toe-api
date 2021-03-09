@@ -7,22 +7,19 @@ const connectDb = () => {
   const mongo_db = process.env.MONGO_DB || 'Highscore'
   const mongo_user = process.env.MONGO_USER
   const mongo_pass = process.env.MONGO_PASS
-  // const mongoUrl = `mongodb://${mongo_user}:${mongo_pass}@${mongo_name}:${mongo_port}/${mongo_db}`
+  const mongo_admin_user = process.env.MONGO_ADMIN_USER
+  const mongo_admin_pass = process.env.MONGO_ADMIN_PASS
   const mongoUrl = `mongodb://${mongo_name}:${mongo_port}/${mongo_db}`
 
   mongoose.Promise = global.Promise
   
-  // mongoose.connect(mongoUrl, {
-  //   useNewUrlParser: true,
-  //   useUnifiedTopology: true,
-  //   useFindAndModify: false,
-  //   useCreateIndex: true,
-  // })
   mongoose.connect(mongoUrl, {
     poolSize: 10,
     authSource: "admin",
-    user: "root",
-    pass: "toor", 
+    // user: mongo_user,
+    // pass: mongo_pass, 
+    user: mongo_admin_user,
+    pass: mongo_admin_pass, 
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
